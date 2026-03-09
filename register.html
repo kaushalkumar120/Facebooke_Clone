@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facebook - Sign Up</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f2f5;
+            margin: 0;
+        }
+        .register-container {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 450px;
+        }
+        .fb-logo {
+            color: #1877f2;
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            display: block;
+        }
+        .input-group {
+            margin-bottom: 1rem;
+            text-align: left;
+        }
+        .input-group input {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #dddfe2;
+            border-radius: 6px;
+            font-size: 17px;
+            box-sizing: border-box;
+        }
+        .btn-primary {
+            width: 100%;
+            background-color: #1877f2;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 20px;
+            font-weight: bold;
+            padding: 10px;
+            cursor: pointer;
+        }
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 1rem;
+            color: #1877f2;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="register-container">
+        <span class="fb-logo">facebook</span>
+        <form id="registerForm">
+            <div class="input-group">
+                <input type="text" id="regName" placeholder="Full Name" required>
+            </div>
+            <div class="input-group">
+                <input type="email" id="regEmail" placeholder="Mobile Number or Email" required>
+            </div>
+            <div class="input-group">
+                <input type="password" id="regPassword" placeholder="New Password" required>
+            </div>
+            <button type="submit" class="btn-primary">Sign Up</button>
+        </form>
+        <a href="login.html" class="back-link">Already have an account?</a>
+    </div>
+
+    <script>
+        document.getElementById('registerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('regName').value;
+            const email = document.getElementById('regEmail').value;
+            const password = document.getElementById('regPassword').value;
+
+            const users = JSON.parse(localStorage.getItem('users') || '[]');
+            
+            if(users.find(u => u.email === email)) {
+                alert('User already exists!');
+                return;
+            }
+
+            const newUser = { name, email, password };
+            users.push(newUser);
+            localStorage.setItem('users', JSON.stringify(users));
+            
+            localStorage.setItem('currentUser', JSON.stringify(newUser));
+            window.location.href = 'home.html';
+        });
+    </script>
+</body>
+</html>

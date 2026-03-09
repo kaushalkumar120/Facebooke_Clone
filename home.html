@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facebook</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-left">
+            <i class="fab fa-facebook logo"></i>
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Search Facebook">
+            </div>
+        </div>
+        <div class="nav-center">
+            <div class="nav-icon active"><i class="fas fa-home"></i></div>
+            <div class="nav-icon"><i class="fas fa-user-friends"></i></div>
+            <div class="nav-icon"><i class="fas fa-tv"></i></div>
+            <div class="nav-icon"><i class="fas fa-store"></i></div>
+        </div>
+        <div class="nav-right">
+            <div class="nav-icon"><i class="fas fa-bell"></i></div>
+            <div class="nav-icon"><i class="fas fa-comment-dots"></i></div>
+            <div class="user-menu">
+                <img src="https://via.placeholder.com/40" alt="Profile" id="navProfileImg">
+                <i class="fas fa-caret-down"></i>
+            </div>
+            <button class="logout-btn" onclick="logout()">Logout</button>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="container">
+        
+        <!-- Left Sidebar -->
+        <div class="left-sidebar">
+            <div class="sidebar-menu">
+                <div class="menu-item active" onclick="loadContent('feed')">
+                    <img src="https://via.placeholder.com/30" class="user-avatar-small">
+                    <span id="currentUserName">User</span>
+                </div>
+                <div class="menu-item" onclick="loadContent('friends')">
+                    <i class="fas fa-user-friends"></i>
+                    <span>Friends</span>
+                </div>
+                <div class="menu-item" onclick="loadContent('groups')">
+                    <i class="fas fa-users"></i>
+                    <span>Groups</span>
+                </div>
+                <div class="menu-item" onclick="loadContent('marketplace')">
+                    <i class="fas fa-store"></i>
+                    <span>Marketplace</span>
+                </div>
+                <div class="menu-item" onclick="loadContent('watch')">
+                    <i class="fas fa-play-circle"></i>
+                    <span>Watch</span>
+                </div>
+                <div class="menu-item" onclick="loadContent('saved')">
+                    <i class="fas fa-bookmark"></i>
+                    <span>Saved</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Middle Feed -->
+        <div class="middle-feed">
+            <!-- Stories -->
+            <div class="stories" id="storiesContainer">
+                <!-- Stories injected via JS -->
+            </div>
+
+            <!-- Create Post -->
+            <div class="create-post">
+                <div class="create-post-top">
+                    <img src="https://via.placeholder.com/40" class="user-avatar-small">
+                    <input type="text" id="postInput" placeholder="What's on your mind, User?">
+                </div>
+                <div class="create-post-bottom">
+                    <button class="post-btn" onclick="createPost()">Post</button>
+                </div>
+            </div>
+
+            <!-- Feed Content Area -->
+            <div id="feedContent">
+                <!-- Posts injected via JS -->
+            </div>
+        </div>
+
+        <!-- Right Sidebar -->
+        <div class="right-sidebar">
+            <h4>Contacts</h4>
+            <div class="contacts-list" id="contactsList">
+                <!-- Contacts injected via JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Chat Popup -->
+    <div class="chat-popup" id="chatPopup">
+        <div class="chat-header">
+            <span id="chatWith">Chatting with...</span>
+            <span class="close-chat" onclick="closeChat()">&times;</span>
+        </div>
+        <div class="chat-body" id="chatBody">
+            <!-- Messages go here -->
+        </div>
+        <div class="chat-input">
+            <input type="text" id="chatInput" placeholder="Type a message...">
+            <button onclick="sendMessage()"><i class="fas fa-paper-plane"></i></button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

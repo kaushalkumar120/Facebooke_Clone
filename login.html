@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facebook - Log In or Sign Up</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f2f5;
+            margin: 0;
+        }
+        .login-container {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1), 0 8px 16px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+        .fb-logo {
+            color: #1877f2;
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            display: block;
+        }
+        .input-group {
+            margin-bottom: 1rem;
+            text-align: left;
+        }
+        .input-group input {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid #dddfe2;
+            border-radius: 6px;
+            font-size: 17px;
+            box-sizing: border-box;
+        }
+        .btn-primary {
+            width: 100%;
+            background-color: #1877f2;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 20px;
+            font-weight: bold;
+            padding: 10px;
+            cursor: pointer;
+        }
+        .btn-primary:hover {
+            background-color: #166fe5;
+        }
+        .divider {
+            border-bottom: 1px solid #dadde1;
+            margin: 1.5rem 0;
+        }
+        .btn-create {
+            background-color: #42b72a;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 17px;
+            font-weight: bold;
+            padding: 10px 16px;
+            cursor: pointer;
+        }
+        .btn-create:hover {
+            background-color: #36a420;
+        }
+        .error-msg {
+            color: red;
+            font-size: 0.9rem;
+            margin-top: 10px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <span class="fb-logo">facebook</span>
+        <form id="loginForm">
+            <div class="input-group">
+                <input type="text" id="loginEmail" placeholder="Email or Phone Number" required>
+            </div>
+            <div class="input-group">
+                <input type="password" id="loginPassword" placeholder="Password" required>
+            </div>
+            <button type="submit" class="btn-primary">Log In</button>
+            <p class="error-msg" id="loginError">Invalid credentials</p>
+        </form>
+        <div class="divider"></div>
+        <button onclick="window.location.href='register.html'" class="btn-create">Create new account</button>
+    </div>
+
+    <script>
+        // Check if already logged in
+        if(localStorage.getItem('currentUser')) {
+            window.location.href = 'home.html';
+        }
+
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            const errorMsg = document.getElementById('loginError');
+
+            // Simple mock authentication
+            const users = JSON.parse(localStorage.getItem('users') || '[]');
+            const user = users.find(u => u.email === email && u.password === password);
+
+            if (user) {
+                localStorage.setItem('currentUser', JSON.stringify(user));
+                window.location.href = 'home.html';
+            } else {
+                errorMsg.style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>
